@@ -1,41 +1,68 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Application name
-      title: 'Flutter Hello World',
-      // Application theme data, you can set the colors for the application as
-      // you want
-      theme: ThemeData(
-        // useMaterial3: false,
-        primarySwatch: Colors.blue,
-      ),
-      // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      debugShowCheckedModeBanner: false,
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
-      ),
       body: Center(
+        child: Container(
+          width: 400,
+          height: 650,
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.black, width: 2),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset('assets/MINISO.png',
+                  width: 150), // Asegúrate de colocar la imagen en assets
+              SizedBox(height: 30),
+              CustomButton(text: "Inicio de sesión"),
+              CustomButton(text: "Registrarse"),
+              CustomButton(text: "Admin"),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class CustomButton extends StatelessWidget {
+  final String text;
+  CustomButton({required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      child: ElevatedButton(
+        onPressed: () {},
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.green,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+        ),
         child: Text(
-          'Hello, World!',
+          text,
+          style: TextStyle(color: Colors.white, fontSize: 16),
         ),
       ),
     );
